@@ -21,14 +21,16 @@ public class DiceServiceImpl implements DiceService{
 	private Random random = new Random();
 
 	@Override
-	public List<Result> rollThem(int noOfDice, int noOfSide, int noOfRolls) {
+	public Simulation simulate(int noOfDice, int noOfSide, int noOfRolls) {
 
 		List<Integer> listOfSums = new ArrayList<>();
 		for (int i = 1; i <= noOfRolls; i++) {
 			int sum = rollASet(noOfDice, noOfSide);
 			listOfSums.add(sum);
 		}
-		return getCounOfEachTotal(listOfSums);
+		
+		return saveSimulation(new Simulation(noOfDice, noOfSide, noOfRolls, getCounOfEachTotal(listOfSums)));
+		
 	}
 
 	private List<Result> getCounOfEachTotal(List<Integer> listOfTotals) {

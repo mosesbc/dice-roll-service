@@ -17,14 +17,14 @@ public class Simulation implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Integer requestId;
+	private Integer simId;
 
 	Integer noOfDice;
 	Integer noOfSide;
 	Integer noOfRolls;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "request_Id")
+	@JoinColumn(name = "sim_Id")
 	List<Result> resultList;
 
 	public Simulation() {
@@ -36,14 +36,6 @@ public class Simulation implements Serializable {
 		this.noOfSide = noOfSide;
 		this.noOfRolls = noOfRolls;
 		this.resultList = resultList;
-	}
-
-	public Integer getRequestId() {
-		return requestId;
-	}
-
-	public void setRequestId(Integer requestId) {
-		this.requestId = requestId;
 	}
 
 	public Integer getNoOfDice() {
@@ -77,5 +69,14 @@ public class Simulation implements Serializable {
 	public void setResultList(List<Result> resultList) {
 		this.resultList = resultList;
 	}
+
+	public Integer getSimId() {
+		return simId;
+	}
+
+	public void setSimId(Integer simId) {
+		this.simId = simId;
+	}
+	
 
 }
