@@ -10,7 +10,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Simulation implements Serializable {
 
 	private static final long serialVersionUID = 7958304460702421272L;
@@ -19,9 +22,9 @@ public class Simulation implements Serializable {
 	@GeneratedValue
 	private Integer simId;
 
-	Integer noOfDice;
-	Integer noOfSide;
-	Integer noOfRolls;
+	private Integer noOfDice;
+	private Integer noOfSide;
+	private Integer noOfRolls;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "sim_Id")

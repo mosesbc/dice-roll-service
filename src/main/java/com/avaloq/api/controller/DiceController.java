@@ -1,5 +1,7 @@
 package com.avaloq.api.controller;
 
+import java.util.List;
+
 import javax.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +10,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.avaloq.api.model.Combination;
+import com.avaloq.api.model.Distribution;
 import com.avaloq.api.model.Simulation;
-import com.avaloq.api.service.DiceService;
+import com.avaloq.api.service.CombinationService;
+import com.avaloq.api.service.SimulationService;
 
 @RestController
 @Validated
 public class DiceController {
 
 	@Autowired
-	private DiceService diceService;
+	private CombinationService combinationService;
+	
+	@Autowired
+	private SimulationService simulationService;
 
 	@GetMapping("/simulate")
 	public Simulation simulate(
@@ -26,7 +34,24 @@ public class DiceController {
 
 		System.out.println("rolling with params noOfDice:" + noOfDice + ",noOfSide:" + noOfSide + ",noOfRolls:" + noOfRolls);
 
-		return diceService.simulate(noOfDice, noOfSide, noOfRolls);
+		return simulationService.simulate(noOfDice, noOfSide, noOfRolls);
+	}
+	
+	@GetMapping("/getCombinations")
+	public List<Combination> getCombinations() {
+		List<Combination> combinations = combinationService.getCombinations();
+				System.out.println("---------- yeah --------");
+				System.out.println("size:" + combinations.size());
+				for (Combination map : combinations) {
+					System.out.println(map.getNoOfDice());
+					System.out.println(map.getNoOfSide());
+					System.out.println();
+					for (Distribution dist : map.getDistributions()) {
+						System.out.println("percentage:" + dist.getPercentage());
+					}
+				}
+				
+		return combinationService.getCombinations();
 	}
 
 }
