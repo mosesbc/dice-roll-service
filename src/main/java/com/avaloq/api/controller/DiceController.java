@@ -14,7 +14,7 @@ import com.avaloq.api.service.DiceService;
 @RestController
 @Validated
 public class DiceController {
-	
+
 	@Autowired
 	private DiceService diceService;
 
@@ -26,8 +26,8 @@ public class DiceController {
 
 		System.out.println("rolling with params noOfDice:" + noOfDice + ",noOfSide:" + noOfSide + ",noOfRolls:" + noOfRolls);
 
-		return new RollRequest(noOfDice, noOfSide, noOfRolls, diceService.rollThem(noOfDice, noOfSide, noOfRolls));
-
+		return diceService.saveRollRequest(
+				new RollRequest(noOfDice, noOfSide, noOfRolls, diceService.rollThem(noOfDice, noOfSide, noOfRolls)));
 	}
 
 }

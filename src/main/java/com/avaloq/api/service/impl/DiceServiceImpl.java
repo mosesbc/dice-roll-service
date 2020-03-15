@@ -4,13 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.avaloq.api.dao.DiceDAO;
 import com.avaloq.api.model.Result;
+import com.avaloq.api.model.RollRequest;
 import com.avaloq.api.service.DiceService;
 
 @Service("diceService")
 public class DiceServiceImpl implements DiceService{
+	
+	@Autowired
+	private DiceDAO diceDAO;
 
 	private Random random = new Random();
 
@@ -20,12 +26,9 @@ public class DiceServiceImpl implements DiceService{
 		List<Integer> listOfSums = new ArrayList<>();
 		for (int i = 1; i <= noOfRolls; i++) {
 			int sum = rollASet(noOfDice, noOfSide);
-			// save or concat
 			listOfSums.add(sum);
 		}
-
 		return getCounOfEachTotal(listOfSums);
-
 	}
 
 	private List<Result> getCounOfEachTotal(List<Integer> listOfTotals) {
@@ -59,6 +62,21 @@ public class DiceServiceImpl implements DiceService{
 
 	private int rollADice(int noOfSide) {
 		return random.nextInt(noOfSide) + 1;
+	}
+
+	@Override
+	public RollRequest saveRollRequest(RollRequest rollRequest) {
+		return diceDAO.saveRollRequest(rollRequest);
+	}
+
+	@Override
+	public List<RollRequest> findAllRollRequest() {
+		return diceDAO.findAllRollRequest();
+	}
+
+	@Override
+	public List<Result> findAllResult() {
+		return diceDAO.findAllResult();
 	}
 
 }

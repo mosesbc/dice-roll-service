@@ -1,16 +1,34 @@
 package com.avaloq.api.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RollRequest {
-	
-	Integer noOfDice; 
-	Integer noOfSide; 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
+public class RollRequest implements Serializable {
+
+	private static final long serialVersionUID = 7958304460702421272L;
+
+	@Id
+	@GeneratedValue
+	private Integer requestId;
+
+	Integer noOfDice;
+	Integer noOfSide;
 	Integer noOfRolls;
-	
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "request_Id")
 	List<Result> resultList;
-	
-	
+
+	public RollRequest() {
+	}
 
 	public RollRequest(Integer noOfDice, Integer noOfSide, Integer noOfRolls, List<Result> resultList) {
 		super();
@@ -18,6 +36,14 @@ public class RollRequest {
 		this.noOfSide = noOfSide;
 		this.noOfRolls = noOfRolls;
 		this.resultList = resultList;
+	}
+
+	public Integer getRequestId() {
+		return requestId;
+	}
+
+	public void setRequestId(Integer requestId) {
+		this.requestId = requestId;
 	}
 
 	public Integer getNoOfDice() {
@@ -51,7 +77,5 @@ public class RollRequest {
 	public void setResultList(List<Result> resultList) {
 		this.resultList = resultList;
 	}
-	
-	
 
 }

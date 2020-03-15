@@ -1,3 +1,10 @@
-com\avaloq\api\controller\DiceController.class
+com\avaloq\api\dao\impl\DiceDAOImpl.class
+com\avaloq\api\dao\ResultDAO.class
+com\avaloq\api\dao\RollRequestDAO.class
+com\avaloq\api\service\DiceService.class
 com\avaloq\api\App.class
+com\avaloq\api\service\impl\DiceServiceImpl.class
+com\avaloq\api\controller\DiceController.class
+com\avaloq\api\dao\DiceDAO.class
 com\avaloq\api\model\Result.class
+com\avaloq\api\model\RollRequest.class
