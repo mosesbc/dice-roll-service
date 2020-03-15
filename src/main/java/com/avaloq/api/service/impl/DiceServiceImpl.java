@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.avaloq.api.dao.DiceDAO;
 import com.avaloq.api.model.Result;
-import com.avaloq.api.model.RollRequest;
+import com.avaloq.api.model.Simulation;
 import com.avaloq.api.service.DiceService;
 
 @Service("diceService")
@@ -65,18 +65,15 @@ public class DiceServiceImpl implements DiceService{
 	}
 
 	@Override
-	public RollRequest saveRollRequest(RollRequest rollRequest) {
-		return diceDAO.saveRollRequest(rollRequest);
+	public Simulation saveSimulation(Simulation Simulation) {
+		return diceDAO.saveSimulation(Simulation);
 	}
 
 	@Override
-	public List<RollRequest> findAllRollRequest() {
-		return diceDAO.findAllRollRequest();
+	public List<Simulation> findAllSimulation() {
+		return diceDAO.findAllSimulation();
 	}
 
-	@Override
-	public List<Result> findAllResult() {
-		return diceDAO.findAllResult();
-	}
+	
 
 }

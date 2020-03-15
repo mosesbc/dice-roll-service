@@ -17,13 +17,13 @@ public class Result implements Serializable {
 	@Id
 	@Column(name = "result_Id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Integer id;
+	private Integer id;
 
 	private Integer total;
 	private Integer timesRolled;
 
 	@ManyToOne
-	private RollRequest rollRequest;
+	private Simulation simulation;
 
 	public Result() {
 	}
@@ -58,12 +58,12 @@ public class Result implements Serializable {
 		this.id = id;
 	}
 
-	public RollRequest getRollRequest() {
-		return rollRequest;
+	public Simulation getSimulation() {
+		return simulation;
 	}
 
-	public void setRollRequest(RollRequest rollRequest) {
-		this.rollRequest = rollRequest;
+	public void setSimulation(Simulation simulation) {
+		this.simulation = simulation;
 	}
-
+	
 }

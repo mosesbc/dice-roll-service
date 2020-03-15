@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class RollRequest implements Serializable {
+public class Simulation implements Serializable {
 
 	private static final long serialVersionUID = 7958304460702421272L;
 
@@ -27,10 +27,10 @@ public class RollRequest implements Serializable {
 	@JoinColumn(name = "request_Id")
 	List<Result> resultList;
 
-	public RollRequest() {
+	public Simulation() {
 	}
 
-	public RollRequest(Integer noOfDice, Integer noOfSide, Integer noOfRolls, List<Result> resultList) {
+	public Simulation(Integer noOfDice, Integer noOfSide, Integer noOfRolls, List<Result> resultList) {
 		super();
 		this.noOfDice = noOfDice;
 		this.noOfSide = noOfSide;
