@@ -38,19 +38,7 @@ public class DiceController {
 	}
 	
 	@GetMapping("/getCombinations")
-	public List<Combination> getCombinations() {
-		List<Combination> combinations = combinationService.getCombinations();
-				System.out.println("---------- yeah --------");
-				System.out.println("size:" + combinations.size());
-				for (Combination map : combinations) {
-					System.out.println(map.getNoOfDice());
-					System.out.println(map.getNoOfSide());
-					System.out.println();
-					for (Distribution dist : map.getDistributions()) {
-						System.out.println("percentage:" + dist.getPercentage());
-					}
-				}
-				
+	public List<Combination> getCombinations() {		
 		return combinationService.getCombinations();
 	}
 

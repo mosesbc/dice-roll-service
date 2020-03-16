@@ -48,7 +48,6 @@ public class CombinationDAOImpl implements CombinationDAO {
 			System.out.println("noOfDice:" + noOfDice + ", noOfSide:" + noOfSide);
 			System.out.println("currentNoOfDice:" + currentNoOfDice + ", currentNoOfSide:" + currentNoOfSide);
 			if (currentNoOfDice != noOfDice || currentNoOfSide != noOfSide) {
-				System.out.println("pasok");
 				if (c != null) {
 					c.setDistributions(distList);
 				}
